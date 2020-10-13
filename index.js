@@ -28,10 +28,15 @@ function processFirstItem(stringList, callback) {
  * 
  * 1. What is the difference between counter1 and counter2?
  * 
+ * Counter1 has the count within the function and counter2 has the count in the global space.
+ * 
  * 2. Which of the two uses a closure? How can you tell?
+ * 
+ * Counter 2 has the information it needs to complete the function, outside in the global space, for it to close. function one can only work within its function.
  * 
  * 3. In what scenario would the counter1 code be preferable? In what scenario would counter2 be better? 
  *
+ * If you want to protect the count and not access it later you can use the counter1 option. If you want to be able to access the count later on, then the counter2 would work best. 
 */
 
 // counter1 code
@@ -56,11 +61,11 @@ function counter2() {
 
 Write a function called `inning` that returns a random number of points that a team scored in an inning. This should be a whole number between 0 and 2. */
 
-function inning(/*Code Here*/){
-
-    /*Code Here*/
-
-}
+function inning(){
+  let score = Math.floor(Math.random()*3)
+  return `${score}`;
+}  
+  
 
 /* Task 3: finalScore()
 
@@ -76,11 +81,16 @@ finalScore(inning, 9) might return:
 
 */ 
 
-function finalScore(/*code Here*/){
-
-  /*Code Here*/
-
+function finalScore(callback, num){
+  let home = 0;
+  let away = 0;
+  for(let i = 1; i < num; i++){
+     home = callback();
+     away = callback();
+  }
+  return `Home: ${home} Away: ${away}`;
 }
+console.log(finalScore(inning, 9));
 
 /* Task 4: 
 
@@ -103,8 +113,63 @@ and returns the score at each pont in the game, like so:
 Final Score: awayTeam - homeTeam */
 
 
-function scoreboard(/* CODE HERE */) {
-  /* CODE HERE */
-}
+function scoreboard(inning, num) {
+  let home = 0;
+  let away = 0;
+  for(let i = 1; i < num; i++){
+    home = callback();
+    away = callback();
+ }
+ return function(){
+   if( i = 1){
+     return `1st inning: ${away} - ${home}`;
+   }
+   if( i = 2){
+    return `2nd inning: ${away} - ${home}`;
+  }
+  if( i = 3){
+    return `3rd inning: ${away} - ${home}`;
+  }
+  if( i = 4){
+    return `4th inning: ${away} - ${home}`;
+  }
+  if( i = 5){
+    return `5th inning: ${away} - ${home}`;
+  }
+  if( i = 6){
+    return `6th inning: ${away} - ${home}`;
+  }
+  if( i = 7){
+    return `7th inning: ${away} - ${home}`;
+  }
+  if( i = 8){
+    return `8th inning: ${away} - ${home}`;
+  }
+  if( i = 9){
+    return `9th inning: ${away} - ${home}`;
+  }
+  else{
+    return `Final Score: ${away} - ${home}`;
+  }
+ }
 
+ 
+
+
+
+
+
+
+
+
+function finalScore(callback, num){
+  let home = 0;
+  let away = 0;
+  for(let i = 1; i < num; i++){
+     home = callback();
+     away = callback();
+  }
+  return `Home: ${home} Away: ${away}`;
+}
+console.log(finalScore(inning, 9));
 
