@@ -63,9 +63,9 @@ Write a function called `inning` that returns a random number of points that a t
 
 function inning(){
   let score = Math.floor(Math.random()*3)
-  return `${score}`;
-}  
-  
+  return score;
+}    
+console.log(inning());  
 
 /* Task 3: finalScore()
 
@@ -84,11 +84,11 @@ finalScore(inning, 9) might return:
 function finalScore(callback, num){
   let home = 0;
   let away = 0;
-  for(let i = 1; i < num; i++){
-     home = callback();
-     away = callback();
+  for(let i = 0; i < num; i++){
+    home += callback();
+    away += callback();  
   }
-  return `Home: ${home} Away: ${away}`;
+    return `Home: ${home} Away: ${away}`;
 }
 console.log(finalScore(inning, 9));
 
@@ -113,63 +113,24 @@ and returns the score at each pont in the game, like so:
 Final Score: awayTeam - homeTeam */
 
 
-function scoreboard(inning, num) {
-  let home = 0;
-  let away = 0;
-  for(let i = 1; i < num; i++){
-    home = callback();
-    away = callback();
- }
- return function(){
-   if( i = 1){
-     return `1st inning: ${away} - ${home}`;
-   }
-   if( i = 2){
-    return `2nd inning: ${away} - ${home}`;
+function getInningScore(cb, num){
+  let score = [];
+  for(let i = 0; i < num; i++){
+    score.push({home: cb(), away: cb()});
   }
-  if( i = 3){
-    return `3rd inning: ${away} - ${home}`;
-  }
-  if( i = 4){
-    return `4th inning: ${away} - ${home}`;
-  }
-  if( i = 5){
-    return `5th inning: ${away} - ${home}`;
-  }
-  if( i = 6){
-    return `6th inning: ${away} - ${home}`;
-  }
-  if( i = 7){
-    return `7th inning: ${away} - ${home}`;
-  }
-  if( i = 8){
-    return `8th inning: ${away} - ${home}`;
-  }
-  if( i = 9){
-    return `9th inning: ${away} - ${home}`;
-  }
-  else{
-    return `Final Score: ${away} - ${home}`;
-  }
- }
-
- 
-
-
-
-
-
-
-
-
-function finalScore(callback, num){
-  let home = 0;
-  let away = 0;
-  for(let i = 1; i < num; i++){
-     home = callback();
-     away = callback();
-  }
-  return `Home: ${home} Away: ${away}`;
+  return score;
 }
-console.log(finalScore(inning, 9));
+function scoreBoard(cb1, callback, num){
+  let score = cb1(callback, num);
+  console.log(score);
+  let home = 0;
+  let away = 0;
+  for(let i = 0; i < num; i ++){
+    home += score[i].home;
+    away += score[i].away;
+    console.log(`Inning: ${i+1}: ${score[i].home} - ${score[i].away}`);
+  }
+ console.log(`Final Score: ${home} - ${away}`); 
+}
 
+scoreBoard(getInningScore,inning, 9);
